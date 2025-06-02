@@ -14,5 +14,6 @@ app.use(cors()); // 교차 출처 데이터 공유 허용 CROSS SCRIPT SITE 공�
 app.use(require('./controllers/tasksController')); // tasksController 라우터 연결
 
 app.listen(PORT, () => { // 서버 시작 감지
+    console.log('APP Listen ----------------------0')
     console.log(`Server is running on port ${PORT}`);
 });
