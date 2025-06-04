@@ -1,3 +1,5 @@
+import path from 'path';
+
 // JS 날짜 포맷 설정
 Date.prototype.format = function(f) {
     if (!this.valueOf()) return " ";
@@ -53,7 +55,7 @@ console.log = (function(original) {
         if (match) {
             const [, functionName, filePath, line, column] = match;
             // 전체 경로에서 프로젝트 루트 이후의 경로만 추출
-            const relativePath = filePath.split('tasks_app')[1].replace(/\\/g, '/');
+            const relativePath = path.relative(process.cwd(), filePath).replace(/\\/g, '/');
             const time = new Date().format('yyyy-MM-dd HH:mm:ss');
             original.apply(console, [`${time} [ ${relativePath} : ${functionName} ] :`, ...arguments]);
         } else {
