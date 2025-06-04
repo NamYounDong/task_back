@@ -1,9 +1,11 @@
+const utils = require('../utils/utils');
 const router = require('express').Router(); // express의 Router 객체 생성(모듈 로드)
 const { sendQuery } = require('../database/database'); // database 연결
 const { initRoute } = require('../routes/getRoutes'); // 라우트 작성
 const {v4:uuidv4} = require('uuid'); // 난수 생성 모듈
 const dotenv = require('dotenv'); // require 메서드로 dotenv 모듈을 불러와서 환경 변수를 로드한다.
 dotenv.config(); // dotenv 모듈을 사용하여 환경 변수를 로드한다
+
 
 
 const tasksControllers = [
@@ -42,7 +44,7 @@ const tasksControllers = [
                 }
             }
 
-            console.log('---------------updateTask-----------------');
+            console.log('---------------getTasks-----------------');
             console.log(query);
             console.log(whereArr);
 
@@ -75,7 +77,7 @@ const tasksControllers = [
                 }
             }
 
-            console.log('---------------updateTask-----------------');
+            console.log('---------------getTask-----------------');
             console.log(query);
             console.log(whereArr);
 
@@ -98,7 +100,7 @@ const tasksControllers = [
             let query = 'insert into tasks (id, title, description, date, is_completed, is_important, user_id) values ($1, $2, $3, $4, $5, $6, $7)';
             const {title, description, date, isCompleted, isImportant, userId} = params;
 
-            console.log('---------------updateTask-----------------');
+            console.log('---------------insertTask-----------------');
             console.log(query);
             console.log([id, title, description, date, isCompleted, isImportant, userId]);
 
@@ -317,11 +319,9 @@ const geocodeFilter = (results) => {
         "establishment",
         "food",
         "point_of_interest",
-
         'natural_feature',                  // 자연 지형
         'place',                  // 장소
         'landmark',                  // 랜드마크
-        
         'hospital',                  // 병원
         'school',                  // 학교
         'college',                  // 대학

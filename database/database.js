@@ -30,7 +30,7 @@ const snakeToCamel = (obj) => {
             const newItem = {};
             for (const key in item) {
                 if (item.hasOwnProperty(key)) {
-                    const camelCaseKey = key.replace(/_([a-z])/g, (_, letter) => letter.toUpperCase());
+                    const camelCaseKey = (key.indexOf('_') == 0 ? key.substring(1, key.length) : key).replace(/_([a-z])/g, (_, letter) => letter.toUpperCase());
                     newItem[camelCaseKey] = item[key];
                 }
             }
@@ -40,7 +40,7 @@ const snakeToCamel = (obj) => {
         newObj = {};
         for (const key in obj) {
             if (obj.hasOwnProperty(key)) {
-                const camelCaseKey = key.replace(/_([a-z])/g, (_, letter) => letter.toUpperCase());
+                const camelCaseKey = (key.indexOf('_') == 0 ? key.substring(1, key.length) : key).replace(/_([a-z])/g, (_, letter) => letter.toUpperCase());
                 newObj[camelCaseKey] = obj[key];
             }
         }
